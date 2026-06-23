@@ -1,11 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes_App</title>
 </head>
+
 <body>
-    
+    <nav>
+        <h2>Notes App</h2>
+        <button id="addBtn">Add Note</button>
+        <div>
+            <input id="searchNote" placeholder="Search notes..." type="text">
+            <button id="searchBtn">Search</button>
+        </div>
+    </nav>
+    <main id="displayNote">
+        <div class="noteCard">
+            <div class="noteHeader">
+                <h3>Note Title</h3>
+                <button class="deletebtn">🗑</button>
+            </div>
+            <p>Notes...</p>
+        </div>
+    </main>
+    <div id="noteBlock">
+        <h3>Add Note</h3>
+        <input type="text" id="noteTitle" placeholder="Enter Title">
+        <textarea id="noteContent" placeholder="Enter your text">
+        </textarea>
+        <div>
+            <button id="savebtn">Save</button>
+            <button id="closebtn">Close</button>
+        </div>
+    </div>
+
 </body>
+
 </html>
