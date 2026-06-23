@@ -1,0 +1,11 @@
+body{
+    background-color: rgb(10, 10, 82);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+nav{
+    display: flex;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
