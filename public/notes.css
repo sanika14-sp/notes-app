@@ -1,11 +1,91 @@
-body{
+body {
     background-color: rgb(10, 10, 82);
     font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
 }
-nav{
+
+nav {
     display: flex;
-    padding-bottom: 30px;
-    padding-top: 30px;
-    padding-left: 15px;
-    padding-right: 15px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    color: white;
+}
+
+.rightNav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#addBtn{
+    margin-right: 20px;
+}
+
+#displayNote {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.noteCard {
+    width: 250px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.noteHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.deleteBtn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#noteTitle,
+#noteContent {
+    width: 92%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+#noteBlock {
+    width: 400px;
+    margin: 30px auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-top: 0px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    color: black;
+}
+
+#noteContent {
+    height: 120px;
+    resize: none;
+    width: 92%;
+}
+
+#noteBlock div {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+button,input {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
