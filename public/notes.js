@@ -3,6 +3,7 @@ const popup = () => {
     let text = document.getElementById("noteBlock");
     text.style.display = "block"
 }
+
 const savenote = () => {
     let title = document.getElementById("noteTitle").value;
     let context = document.getElementById("noteContent").value;
@@ -11,12 +12,20 @@ const savenote = () => {
     }
     notes.push(note);
     console.log(notes);
+    if(title === "" || context === ""){
+        alert("Please fill the complete note");
+        return;
+    }
     displayNotes();
     document.getElementById("noteTitle").value = "";
     document.getElementById("noteContent").value = "";
     document.getElementById("noteBlock").style.display = "none";
-
 }
+
+const closebutton = ()=>{
+    document.getElementById("noteBlock").style.display = "none";
+}
+
 const displayNotes = () => {
     let container = document.getElementById("displayNote");
     container.innerHTML = "";
@@ -47,7 +56,17 @@ const displayNotes = () => {
     });
 
 }
+
+const searchNotes = () => {
+    let searchInput = document.getElementById("searchNote").value.toLowerCase();
+    let filteredNotes = notes.filter(note => {
+        
+    })
+
+}
 let addBtn = document.getElementById("addBtn")
 addBtn.addEventListener("click", popup);
 let savebtn = document.getElementById("savebtn");
 savebtn.addEventListener("click", savenote);
+let closebtn = document.getElementById("closebtn");
+closebtn.addEventListener("click", closebutton);
