@@ -1,5 +1,12 @@
-const express = require("express");
-const app = express();
-app.listen(3000, () => {
-    console.log("Server is running on port 3000");
+const fs = require("fs");
+
+fs.readFile("notes.json", "utf8", (err, data) =>{
+
+    if(err){
+        console.log("Error reading notes.json:", err);
+        return;
+    }
+
+    const notes = JSON.parse(data);
+    console.log(notes);
 });
