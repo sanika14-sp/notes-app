@@ -20,11 +20,23 @@ const savenote = () => {
     let note = {
         title, context
     }
-    notes.push(note);
-    console.log(notes);
     if (title.trim() === "" || context.trim() === "") {
         alert("Please fill the complete note");
         return;
+    }
+    const SaveNote = async () => {
+        try {
+            const response = await fetch('/notes', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(note)
+            })
+        }
+        catch (error) {
+            console.error(error);
+        }
     }
     displayNotes(notes);
     document.getElementById("noteTitle").value = "";
@@ -69,7 +81,7 @@ const displayNotes = (notesToDisplay) => {
 const searchNotes = () => {
     let searchInput = document.getElementById("searchNote").value.toLowerCase();
     let filteredNotes = notes.filter(note => {
-      return note.title.toLowerCase().includes(searchInput) || note.context.toLowerCase().includes(searchInput);
+        return note.title.toLowerCase().includes(searchInput) || note.context.toLowerCase().includes(searchInput);
     });
     displayNotes(filteredNotes);
 }
@@ -81,4 +93,4 @@ let closebtn = document.getElementById("closebtn");
 closebtn.addEventListener("click", closebutton);
 let searchBtn = document.getElementById("searchBtn");
 searchBtn.addEventListener("click", searchNotes);
-window.addEventListener("DOMContentLoaded", loadNotes);
+window.addEventListener("DOMContentLoaded", loadNotes); 5

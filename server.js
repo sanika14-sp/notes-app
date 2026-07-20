@@ -2,8 +2,11 @@ const fs = require("fs");
 const express = require("express");
 
 const app = express();
-app.use(express.json());
 
+app.use(express.json());
+app.use(express.static("public"));
+
+// GET route to fetch notes from the server 
 app.get("/notes", (req, res) => {
 
     fs.readFile("notes.json", "utf8", (err, data) => {
@@ -12,7 +15,6 @@ app.get("/notes", (req, res) => {
             return res.status(500).json({
                 message: "Error reading notes "
             }
-
             );
         }
 
@@ -20,6 +22,31 @@ app.get("/notes", (req, res) => {
         res.json(notes);
     });
 
+})
+
+// POST route to add and save the notes 
+app.post("/notes", (req, res) => {
+    const newNote = req.body;     // The new note send by the browser 
+    fs.readFile("notes.json", "utf8", (err, data) => {
+        if (err) {
+            return res.status(500).json({
+                message: "Error reading notes"
+            })
+        }
+
+        const notes = JSON.parse(data);
+        notes.push(newNote);   // Add teh new note to the existing one 
+
+        fs.writeFile("notes.json", JSON.stringify(notes), (err) => {
+            if(err) {
+                return res.status(500).json({
+                    message: "Error saving the note"
+                })
+            } res.status(201).json({
+                message: "Note saved successfully"
+            })
+        })
+    })
 })
 
 app.listen(3000, () => {
