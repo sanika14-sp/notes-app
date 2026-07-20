@@ -1,12 +1,27 @@
 const fs = require("fs");
+const express = require("express");
 
-fs.readFile("notes.json", "utf8", (err, data) =>{
+const app = express();
+app.use(express.json());
 
-    if(err){
-        console.log("Error reading notes.json:", err);
-        return;
-    }
+app.get("/notes", (req, res) => {
 
-    const notes = JSON.parse(data);
-    console.log(notes);
-});
+    fs.readFile("notes.json", "utf8", (err, data) => {
+
+        if (err) {
+            return res.status(500).json({
+                message: "Error reading notes "
+            }
+
+            );
+        }
+
+        const notes = JSON.parse(data);
+        res.json(notes);
+    });
+
+})
+
+app.listen(3000, () => {
+    console.log("Server is running at port 3000");
+})

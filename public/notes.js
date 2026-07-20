@@ -1,4 +1,14 @@
-let notes = [];
+const loadNotes = async () => {
+    try {
+        const response = await fetch('/notes');
+        const data = await response.json();
+        notes = data;
+        displayNotes(notes);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 const popup = () => {
     let text = document.getElementById("noteBlock");
     text.style.display = "block"
@@ -71,3 +81,4 @@ let closebtn = document.getElementById("closebtn");
 closebtn.addEventListener("click", closebutton);
 let searchBtn = document.getElementById("searchBtn");
 searchBtn.addEventListener("click", searchNotes);
+window.addEventListener("DOMContentLoaded", loadNotes);
