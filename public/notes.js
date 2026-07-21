@@ -14,35 +14,41 @@ const popup = () => {
     text.style.display = "block"
 }
 
-const savenote = () => {
+const savenote = async () => {
     let title = document.getElementById("noteTitle").value;
     let context = document.getElementById("noteContent").value;
-    let note = {
-        title, context
-    }
     if (title.trim() === "" || context.trim() === "") {
         alert("Please fill the complete note");
         return;
     }
-    const SaveNote = async () => {
-        try {
-            const response = await fetch('/notes', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(note)
-            })
-        }
-        catch (error) {
-            console.error(error);
+    let note = {
+        id: Date.now(),
+        title, context
+    }
+
+    try {
+        const response = await fetch('/notes', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(note)
+        });
+        if (response.ok) {
+            await loadNotes();
+
+            document.getElementById("noteTitle").value = "";
+            document.getElementById("noteContent").value = "";
+            document.getElementById("noteBlock").style.display = "none";
+
         }
     }
-    displayNotes(notes);
-    document.getElementById("noteTitle").value = "";
-    document.getElementById("noteContent").value = "";
-    document.getElementById("noteBlock").style.display = "none";
+    catch (error) {
+        console.error(error);
+    }
 }
+
+
 
 const closebutton = () => {
     document.getElementById("noteBlock").style.display = "none";
