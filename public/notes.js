@@ -57,7 +57,7 @@ const closebutton = () => {
 const displayNotes = (notesToDisplay) => {
     let container = document.getElementById("displayNote");
     container.innerHTML = "";
-    notesToDisplay.forEach((note, index) => {
+    notesToDisplay.forEach((note) => {
         let displayCard = document.createElement("div");
         displayCard.className = "noteCard";
         displayCard.innerHTML = `<h3>${note.title}</h3>
@@ -71,10 +71,19 @@ const displayNotes = (notesToDisplay) => {
             const deletebutton = document.createElement("button");
             deletebutton.className = " deleteBtn ";
             deletebutton.textContent = "🗑";
-            deletebutton.addEventListener("click", (event) => {
+            deletebutton.addEventListener("click", async(event) => {
                 event.stopPropagation();
-                notes.splice(index, 1);
-                displayNotes(notes);
+               try {
+                    const response = await fetch(`/notes/${note.id}`, {
+                        method: 'DELETE'
+                    });
+                    if(response.ok) {
+                        await loadNotes();
+                    }
+               }
+               catch (error){
+                console.error(error);
+               }
             })
             displayCard.appendChild(deletebutton);
         }

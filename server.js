@@ -52,17 +52,22 @@ app.post("/notes", (req, res) => {
 })
 app.delete("/notes/:id", (req, res) => {
     fs.readFile("notes.json", "utf8", (err, data) => {
+
         if (err) {
             return res.status(500).json({
                 message: "Error deleting the note"
             })
         }
+
         const id = parseInt(req.params.id);
         const notes = JSON.parse(data);
+
         const updatedNotes = notes.filter(note => {
             return note.id !== id;
         });
+
         fs.writeFile("notes.json", JSON.stringify(updatedNotes), (err) => {
+
             if (err) {
                 return res.status(500).json({
                     message: "Error saving updated notes"
@@ -72,6 +77,7 @@ app.delete("/notes/:id", (req, res) => {
             res.status(200).json({
                 message: "Note deleted successfully"
             });
+            
         });
 
     })
