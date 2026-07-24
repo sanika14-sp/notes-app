@@ -30,12 +30,13 @@ nav {
 }
 
 .noteCard {
-    width: 250px;
-    padding: 15px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    color: black;
+    width: 280px;
+    min-height: 180px;
+    padding: 18px;
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: transform .2s ease, box-shadow .2s ease;
 
 }
 
